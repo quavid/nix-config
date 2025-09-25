@@ -76,6 +76,7 @@
     xorg.xmodmap
     xclip
     vesktop
+    git
   ];
   programs = {
     firefox.enable = true;

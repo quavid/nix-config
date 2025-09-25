@@ -54,10 +54,18 @@
   # Add stuff for your user as you see fit:
   # programs.neovim.enable = true;
   # home.packages = with pkgs; [ steam ];
-  
+  programs.nixcord = {
+    enable = true;
+    vesktop.enable = true;
+    dorion.enable = true;
+  }; 
+  programs.nixvim = {
+    enable = true;
+    colorschemes.catpuccin.enable = true;
+    plugins.lualine.enable = true;
+  };
   # Enable home-manager and git
   programs.home-manager.enable = true;
-  programs.git.enable = true;
   
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
