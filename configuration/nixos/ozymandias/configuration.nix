@@ -91,15 +91,12 @@
     useOSProber = true;
  };
 
-  services.displayManager = {
-    gdm.enable = true;
-    defaultSession = "xfce";
-  };
 
   services.xserver = {
     enable = true;
     desktopManager.xfce.enable = true;
     desktopManager.xterm.enable = true;
+    displayManager.lightdm.enable = true;
     xkb = {
       layout = "us";
       variant = "";

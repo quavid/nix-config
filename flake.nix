@@ -60,9 +60,9 @@
         ];
       };
 	ozymandias = nixpkgs.lib.nixosSystem {
-		specialArgs = {inherit inputs outpust;};
+		specialArgs = {inherit inputs outputs;};
 		modules = [
-			./configuration/nixos/ozymandias/configuration.nix;
+			./configuration/nixos/ozymandias/configuration.nix
 		];
 	};
     };
@@ -79,7 +79,7 @@
         ];
       };
 	"qdj@ozymandias" = home-manager.lib.homeManagerConfiguration {
-		pkgs = nixpks.legacyPackages.x86_64-linux;
+		pkgs = nixpkgs.legacyPackages.x86_64-linux;
 		extraSpecialArgs = {inherit inputs outputs;};
 		modules = [
 			./configuration/home-manager/ozymandias/home.nix
