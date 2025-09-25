@@ -12,7 +12,8 @@
   imports = [
     # If you want to use modules your own flake exports (from modules/home-manager):
     # outputs.homeManagerModules.example
-
+    inputs.nixcord.homeModules.nixcord
+    inputs.nixvim.homeModules.nixvim
     # Or modules exported from other flakes (such as nix-colors):
     # inputs.nix-colors.homeManagerModules.default
 
@@ -54,14 +55,14 @@
   # Add stuff for your user as you see fit:
   # programs.neovim.enable = true;
   # home.packages = with pkgs; [ steam ];
-  programs.nixcord = {
-    enable = true;
-    vesktop.enable = true;
-    dorion.enable = true;
-  }; 
+#  programs.nixcord = {
+#    enable = true;
+#    vesktop.enable = true;
+#    dorion.enable = true;
+#  }; 
   programs.nixvim = {
     enable = true;
-    colorschemes.catpuccin.enable = true;
+    colorschemes.gruvbox.enable = true;
     plugins.lualine.enable = true;
   };
   # Enable home-manager and git

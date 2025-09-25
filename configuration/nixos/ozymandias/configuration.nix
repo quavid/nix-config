@@ -10,6 +10,7 @@
 }: {
   # You can import other NixOS modules here
   imports = [
+    inputs.home-manager.nixosModules.home-manager
     # If you want to use modules your own flake exports (from modules/nixos):
     # outputs.nixosModules.example
 
@@ -144,6 +145,12 @@
         # TODO: Add your SSH public key(s) here, if you plan on using SSH to connect
       ];
       extraGroups = ["wheel" "networkmanager"];
+    };
+  };
+  home-manager = {
+    extraSpecialArgs = {inherit inputs outputs; };
+    users = {
+      qdj = import ../../home-manager/ozymandias/home.nix;
     };
   };
 
