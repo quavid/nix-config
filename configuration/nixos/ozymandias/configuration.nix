@@ -85,12 +85,14 @@
     nerd-fonts.fira-code
   ];
 
-  boot.loader.grub = {
-    enable = true;
-    device = "/dev/nvme0n1";
-    useOSProber = true;
- };
+#  boot.loader.grub = {
+#    enable = true;
+#    device = "/dev/nvme0n1";
+#    useOSProber = true;
+# };
 
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
 
   services.xserver = {
     enable = true;
