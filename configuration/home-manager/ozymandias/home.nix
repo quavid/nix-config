@@ -24,8 +24,7 @@
   nixpkgs = {
     # You can add overlays here
     overlays = [
-      # Add overlays your own flake exports (from overlays and pkgs dir):
-      outputs.overlays.additions
+      # Add overlays your own flake exports (from overlays and pkgs dir): outputs.overlays.additions
       outputs.overlays.modifications
       outputs.overlays.unstable-packages
 
@@ -55,15 +54,18 @@
   # Add stuff for your user as you see fit:
   # programs.neovim.enable = true;
   # home.packages = with pkgs; [ steam ];
-#  programs.nixcord = {
-#    enable = true;
-#    vesktop.enable = true;
-#    dorion.enable = true;
-#  }; 
+  programs.nixcord = {
+    enable = true;
+    vesktop.enable = true;
+    dorion.enable = true;
+  }; 
   programs.nixvim = {
     enable = true;
-    colorschemes.gruvbox.enable = true;
     plugins.lualine.enable = true;
+    plugins.which-key.enable = true;
+    plugins.vimwiki.enable = true;
+    plugins.nvim-autopairs.enable = true;
+    colorschemes.gruvbox.enable = true;
   };
   # Enable home-manager and git
   programs.home-manager.enable = true;
