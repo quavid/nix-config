@@ -56,9 +56,15 @@
         specialArgs = {inherit inputs outputs;};
         modules = [
           # > Our main nixos configuration file <
-          ./nixos/configuration.nix
+          ./configuration/nixos/shibboleth/configuration.nix
         ];
       };
+	ozymandias = nixpkgs.lib.nixosSystem {
+		specialArgs = {inherit inputs outpust;};
+		modules = [
+			./configuration/nixos/ozymandias/configuration.nix;
+		];
+	};
     };
 
     # Standalone home-manager configuration entrypoint
@@ -69,9 +75,16 @@
         extraSpecialArgs = {inherit inputs outputs;};
         modules = [
           # > Our main home-manager configuration file <
-          ./home-manager/home.nix
+          ./configuration/home-manager/shibboleth/home.nix
         ];
       };
+	"qdj@ozymandias" = home-manager.lib.homeManagerConfiguration {
+		pkgs = nixpks.legacyPackages.x86_64-linux;
+		extraSpecialArgs = {inherit inputs outputs;};
+		modules = [
+			./configuration/home-manager/ozymandias/home.nix
+		];
+	};
     };
   };
 }
