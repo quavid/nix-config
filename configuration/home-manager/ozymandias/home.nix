@@ -1,78 +1,89 @@
 # This is your home-manager configuration file
 # Use this to configure your home environment (it replaces ~/.config/nixpkgs/home.nix)
 {
-  inputs,
-  outputs,
-  lib,
-  config,
-  pkgs,
-  ...
+	inputs,
+	outputs,
+	lib,
+	config,
+	pkgs,
+	...
 }: {
-  # You can import other home-manager modules here
-  imports = [
-    # If you want to use modules your own flake exports (from modules/home-manager):
-    # outputs.homeManagerModules.example
-    inputs.nixcord.homeModules.nixcord
-    inputs.nixvim.homeModules.nixvim
-    # Or modules exported from other flakes (such as nix-colors):
-    # inputs.nix-colors.homeManagerModules.default
+	# You can import other home-manager modules here
+	imports = [
+		# If you want to use modules your own flake exports (from modules/home-manager):
+		# outputs.homeManagerModules.example
+		inputs.nixcord.homeModules.nixcord
+		inputs.nixvim.homeModules.nixvim
+		# Or modules exported from other flakes (such as nix-colors):
+		# inputs.nix-colors.homeManagerModules.default
 
-    # You can also split up your configuration and import pieces of it here:
-    # ./nvim.nix
-  ];
+		# You can also split up your configuration and import pieces of it here:
+		# ./nvim.nix
+	];
 
-  nixpkgs = {
-    # You can add overlays here
-    overlays = [
-      # Add overlays your own flake exports (from overlays and pkgs dir): outputs.overlays.additions
-      outputs.overlays.modifications
-      outputs.overlays.unstable-packages
+	nixpkgs = {
+		# You can add overlays here
+		overlays = [
+			# Add overlays your own flake exports (from overlays and pkgs dir): outputs.overlays.additions
+			outputs.overlays.modifications
+			outputs.overlays.unstable-packages
 
-      # You can also add overlays exported from other flakes:
-      # neovim-nightly-overlay.overlays.default
+			# You can also add overlays exported from other flakes:
+			# neovim-nightly-overlay.overlays.default
 
-      # Or define it inline, for example:
-      # (final: prev: {
-      #   hi = final.hello.overrideAttrs (oldAttrs: {
-      #     patches = [ ./change-hello-to-hi.patch ];
-      #   });
-      # })
-    ];
-    # Configure your nixpkgs instance
-    config = {
-      # Disable if you don't want unfree packages
-      allowUnfree = true;
-    };
-  };
+			# Or define it inline, for example:
+			# (final: prev: {
+			#   hi = final.hello.overrideAttrs (oldAttrs: {
+			#     patches = [ ./change-hello-to-hi.patch ];
+			#   });
+			# })
+		];
+		# Configure your nixpkgs instance
+		config = {
+			# Disable if you don't want unfree packages
+			allowUnfree = true;
+		};
+	};
 
-  # TODO: Set your username
-  home = {
-    username = "qdj";
-    homeDirectory = "/home/qdj";
-  };
+	# TODO: Set your username
+	home = {
+		username = "qdj";
+		homeDirectory = "/home/qdj";
+	};
+	# Add stuff for your user as you see fit:
+	# programs.neovim.enable = true;
+	# home.packages = with pkgs; [ steam ];
+	programs.nixcord = {
+		enable = true;
+		vesktop.enable = true;
+		dorion.enable = true;
+	}; 
+	programs.nixvim = {
+		enable = true;
+		colorschemes.gruvbox.enable = true;
+		plugins = {
+			lualine.enable = true;
+			which-key.enable = true;
+			vimwiki.enable = true;
+			nvim-autopairs.enable = true;
+		};
+		opts = {
+			number = true;
+			relativenumber = true;
+			shiftwidth = 2;
+			tabstop = 2;
+			softtabstop = 2;
+			splitbelow = true;
+			splitright = true;
+		};
+	};
+	# Enable home-manager and git
+	programs.home-manager.enable = true;
+	programs.qutebrowser.enable = true;
+	# Nicely reload system units when changing configs
+	systemd.user.startServices = "sd-switch";
 
-  # Add stuff for your user as you see fit:
-  # programs.neovim.enable = true;
-  # home.packages = with pkgs; [ steam ];
-  programs.nixcord = {
-    enable = true;
-    vesktop.enable = true;
-    dorion.enable = true;
-  }; 
-  programs.nixvim = {
-    enable = true;
-    plugins.lualine.enable = true;
-    plugins.which-key.enable = true;
-    plugins.vimwiki.enable = true;
-    plugins.nvim-autopairs.enable = true;
-    colorschemes.gruvbox.enable = true;
-  };
-  # Enable home-manager and git
-  programs.home-manager.enable = true;
-  
-  # Nicely reload system units when changing configs
-  systemd.user.startServices = "sd-switch";
-
-  # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-  home.stateVersion = "25.05";
+	# https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
+	home.stateVersion = "25.05";
 }
+
