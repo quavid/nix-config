@@ -86,7 +86,7 @@
     nerd-fonts.fira-code
   ];
 
-  boot.loader.grub = {
+  boot.loader.grub = lib.mkDefault {
     enable = true;
     device = "/dev/nvme0n1";
     useOSProber = true;
@@ -109,12 +109,14 @@
       variant = "";
     };
   };
-  hardware.graphics = {
-    enable = true;
+  hardware = {
+    graphics = {
+      enable = true;
+    };
     nvidia = {
       modesetting.enable = true;
       nvidiaSettings = true;
-      open = false;
+      open = true;
     };
   };
 
